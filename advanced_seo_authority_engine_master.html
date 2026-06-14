@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced SEO Authority Engine Master</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border">
+        <h1 class="text-3xl font-bold mb-2 text-blue-900">SEO Authority Engine Master</h1>
+        <p class="text-gray-600 mb-6 italic">Strictly based on FAQs Prompt.PDF Methodology</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <input type="text" id="topic" placeholder="Main Topic" class="p-3 border rounded-lg w-full">
+            <input type="text" id="secondaryTopic" placeholder="Secondary Topic" class="p-3 border rounded-lg w-full">
+            <input type="text" id="keyword" placeholder="Primary Keyword" class="p-3 border rounded-lg w-full">
+            <input type="text" id="country" placeholder="Target Country" class="p-3 border rounded-lg w-full">
+            <select id="type" class="p-3 border rounded-lg w-full">
+                <option>Informational</option>
+                <option>Commercial</option>
+                <option>Transactional</option>
+                <option>Local SEO</option>
+            </select>
+            <input type="text" id="timeframe" placeholder="Data Timeframe (e.g. Last 30 Days)" class="p-3 border rounded-lg w-full">
+        </div>
+        
+        <button onclick="generateExpertPrompt()" class="w-full bg-blue-700 text-white p-4 rounded-xl font-bold hover:bg-blue-800 transition">Generate Master Strategy Prompt</button>
+
+        <div id="resultArea" class="hidden mt-8">
+            <textarea id="promptOutput" class="w-full h-96 p-5 bg-gray-950 text-emerald-400 font-mono text-sm rounded-xl border"></textarea>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <button onclick="copyToClipboard()" class="bg-gray-800 text-white p-3 rounded-lg font-bold hover:bg-gray-700">Copy Prompt</button>
+                <button onclick="downloadPrompt()" class="bg-emerald-600 text-white p-3 rounded-lg font-bold hover:bg-emerald-700">Download .txt</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateExpertPrompt() {
+            const data = {
+                t: document.getElementById('topic').value,
+                st: document.getElementById('secondaryTopic').value,
+                k: document.getElementById('keyword').value,
+                c: document.getElementById('country').value,
+                ty: document.getElementById('type').value,
+                tf: document.getElementById('timeframe').value
+            };
+
+            const prompt = `Act as an Elite SEO Strategist and Topical Authority Expert. Perform a deep, real-time data analysis based on the following parameters:
+
+TOPIC: ${data.t}
+SECONDARY TOPIC: ${data.st}
+PRIMARY KEYWORD: ${data.k}
+TARGET COUNTRY: ${data.c}
+ARTICLE TYPE: ${data.ty}
+DATA TIMEFRAME: ${data.tf}
+
+EXECUTE THE FOLLOWING 6 STEPS (Based on FAQs Prompt.PDF):
+
+STEP 1: SEARCH INTENT & REAL-TIME DATA ANALYSIS
+- Analyze Primary, Secondary, and Hidden Intents.
+- Report on LIVE pain points currently circulating on ChatGPT, Gemini, Claude, and Perplexity for this specific country (${data.c}).
+- List exact Natural Language Queries users are typing in AI and Search Engines to solve these problems within the last ${data.tf}.
+
+STEP 2: USER JOURNEY MAPPING
+- Identify questions asked: Before searching, During research, Before taking action, After implementation.
+
+STEP 3: COMPETITOR & MARKET LANDSCAPE
+- Estimate current high-authority websites solving this in ${data.c}.
+- Identify content gaps and what competitors miss.
+
+STEP 4: GENERATE FAQs (STRICT TABLE FORMAT)
+- Top 10 Must-Have FAQs (Table: FAQ | Intent | Priority | Why It Matters)
+- Top 5 Supporting FAQs (Table: FAQ | Intent | Priority | Why It Matters)
+- Top 5 Information Gain FAQs (Table: FAQ | Intent | Priority | Why It Matters)
+
+STEP 5: PRIORITIZATION
+- Assign: High, Medium, Low Priority.
+
+STEP 6: CONTENT COVERAGE CHECK
+- List missing topics and user concerns.
+
+Focus on ranking potential and topical authority. Ensure insights are actionable and based on the provided timeframe.`;
+
+            document.getElementById('promptOutput').value = prompt;
+            document.getElementById('resultArea').classList.remove('hidden');
+        }
+
+        function copyToClipboard() {
+            const textarea = document.getElementById('promptOutput');
+            textarea.select();
+            document.execCommand('copy');
+            alert("Prompt copied to your clipboard!");
+        }
+
+        function downloadPrompt() {
+            const text = document.getElementById('promptOutput').value;
+            const blob = new Blob([text], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Rizwan_Master_SEO_Strategy.txt';
+            a.click();
+        }
+    </script>
+</body>
+</html>
